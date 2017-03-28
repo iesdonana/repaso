@@ -18,7 +18,8 @@ class OrdenadorSearch extends Ordenador
     public function rules()
     {
         return [
-            [['id', 'aula_id'], 'integer'],
+            [['id'], 'integer'],
+            [['aula_id'], 'safe'],
             [['marca_ord', 'modelo_ord'], 'safe'],
         ];
     }
@@ -41,7 +42,7 @@ class OrdenadorSearch extends Ordenador
      */
     public function search($params)
     {
-        $query = Ordenador::find();
+        $query = Ordenador::find()->joinWith('aula');
 
         // add conditions that should always apply here
 
@@ -60,11 +61,11 @@ class OrdenadorSearch extends Ordenador
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'aula_id' => $this->aula_id,
         ]);
 
         $query->andFilterWhere(['like', 'marca_ord', $this->marca_ord])
-            ->andFilterWhere(['like', 'modelo_ord', $this->modelo_ord]);
+            ->andFilterWhere(['like', 'modelo_ord', $this->modelo_ord])
+            ->andFilterWhere(['like', 'den_aula', $this->aula_id]);
 
         return $dataProvider;
     }
