@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Aula;
 use app\models\Ordenador;
 use app\models\OrdenadorSearch;
 use yii\web\Controller;
@@ -87,8 +88,14 @@ class OrdenadoresController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $aulas = Aula::find()
+                ->select('den_aula, id')
+                ->indexBy('id')
+                ->orderBy('den_aula')
+                ->column();
             return $this->render('update', [
                 'model' => $model,
+                'aulas' => $aulas,
             ]);
         }
     }
