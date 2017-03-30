@@ -71,6 +71,7 @@ class OrdenadoresController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'aulas' => Aula::findDropDownList(),
             ]);
         }
     }
@@ -88,14 +89,9 @@ class OrdenadoresController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $aulas = Aula::find()
-                ->select('den_aula, id')
-                ->indexBy('id')
-                ->orderBy('den_aula')
-                ->column();
             return $this->render('update', [
                 'model' => $model,
-                'aulas' => $aulas,
+                'aulas' => Aula::findDropDownList(),
             ]);
         }
     }

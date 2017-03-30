@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Ordenador */
 
-$this->title = 'Update Ordenador: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Ordenadors', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$nombre = $model->marca_ord . ' ' . $model->modelo_ord;
+$this->title = 'Update Ordenador: ' . $nombre;
+$this->params['breadcrumbs'][] = ['label' => 'Ordenadores', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $nombre, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Modificar';
 ?>
 <div class="ordenador-update">
 
