@@ -46,6 +46,7 @@ create table dispositivos
 insert into dispositivos (marca_disp, modelo_disp, ordenador_id, aula_id)
     values ('Seagate', 'Barracuda 1TB', 1, null),
            ('Logitech', 'K120', 2, null),
+           ('Ratón', 'Superguay', 2, null),
            ('nVIDIA', 'GTX480', null, 2);
 
 drop table if exists registro_ord cascade;

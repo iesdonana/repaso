@@ -28,6 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'aula_id',
                 'value' => 'aula.den_aula',
             ],
+            [
+                'attribute' => 'numero',
+                'value' => function ($model, $widget) {
+                    return count($model->dispositivos);
+                },
+                'label' => 'Número de dispositivos',
+            ],
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -1,5 +1,9 @@
 <?php
 
+use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
+use yii\grid\GridView;
+use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -31,6 +35,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'marca_ord',
             'modelo_ord',
             'aula.den_aula:text:Aula',
+        ],
+    ]) ?>
+
+    <?= GridView::widget([
+        'dataProvider' => new ActiveDataProvider([
+            'query' => $model->getDispositivos(),
+        ]),
+        'columns' => [
+            'marca_disp',
+            'modelo_disp',
+            [ 'class' => ActionColumn::className() ],
         ],
     ]) ?>
 
