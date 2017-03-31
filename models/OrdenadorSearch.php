@@ -20,9 +20,8 @@ class OrdenadorSearch extends Ordenador
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['aula_id', 'numero'], 'safe'],
-            [['marca_ord', 'modelo_ord'], 'safe'],
+            [['id', 'numero'], 'integer'],
+            [['marca_ord', 'modelo_ord', 'aula_id'], 'safe'],
         ];
     }
 
@@ -44,7 +43,7 @@ class OrdenadorSearch extends Ordenador
      */
     public function search($params)
     {
-        $query = Ordenador::find()->joinWith(['aula', 'dispositivos']);
+        $query = Ordenador::find();
 
         // add conditions that should always apply here
 
@@ -60,8 +59,6 @@ class OrdenadorSearch extends Ordenador
             return $dataProvider;
         }
 
-        $query->select('ordenadores.*, count(ordenadores.id) as numero');
-
         $dataProvider->sort->attributes['aula_id'] = [
             'asc' => ['den_aula' => SORT_ASC],
             'desc' => ['den_aula' => SORT_DESC],
@@ -72,20 +69,14 @@ class OrdenadorSearch extends Ordenador
             'desc' => ['numero' => SORT_DESC],
         ];
 
-        $query->groupBy('ordenadores.id');
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
-
-        $query->andFilterWhere(['like', 'marca_ord', $this->marca_ord])
-            ->andFilterWhere(['like', 'modelo_ord', $this->modelo_ord])
-            ->andFilterWhere(['like', 'den_aula', $this->aula_id]);
-
-        $query->andFilterHaving([
-            'count(dispositivos.id)' => $this->numero,
-        ]);
+        $query->select('o.*, count(d.id) as numero')
+            ->from('ordenadores o')
+            ->joinWith(['aula', 'dispositivos d'])
+            ->andFilterWhere(['ilike', 'marca_ord', $this->marca_ord])
+            ->andFilterWhere(['ilike', 'modelo_ord', $this->modelo_ord])
+            ->andFilterWhere(['ilike', 'den_aula', $this->aula_id])
+            ->groupBy('o.id')
+            ->andFilterHaving(['count(d.id)' => $this->numero]);
 
         return $dataProvider;
     }
