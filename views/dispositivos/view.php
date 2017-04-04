@@ -1,5 +1,7 @@
 <?php
 
+use yii\data\ActiveDataProvider;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -33,6 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'modelo_disp',
             'ordenador_id',
             'aula_id',
+        ],
+    ]) ?>
+
+    <?= GridView::widget([
+        'dataProvider' => new ActiveDataProvider([
+            'query' => $model->getRegistros(),
+        ]),
+        'columns' => [
+            'origenAula.den_aula:text:Origen',
+            'origenOrd.marca_ord:text:Origen',
+            'destinoAula.den_aula:text:Destino',
+            'destinoOrd.marca_ord:text:Destino',
+            'created_at:datetime'
         ],
     ]) ?>
 

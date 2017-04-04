@@ -49,4 +49,15 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <?= GridView::widget([
+        'dataProvider' => new ActiveDataProvider([
+            'query' => $model->getRegistros(),
+        ]),
+        'columns' => [
+            'origen.den_aula:text:Origen',
+            'destino.den_aula:text:Destino',
+            'created_at:datetime'
+        ],
+    ]) ?>
+
 </div>
