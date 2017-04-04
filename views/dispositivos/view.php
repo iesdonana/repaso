@@ -43,10 +43,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'query' => $model->getRegistros(),
         ]),
         'columns' => [
-            'origenAula.den_aula:text:Origen',
-            'origenOrd.marca_ord:text:Origen',
-            'destinoAula.den_aula:text:Destino',
-            'destinoOrd.marca_ord:text:Destino',
+            [
+                'attribute' => 'origen_id',
+                'value' => function ($model, $widget) {
+                    if ($model->origen_ord_id !== null) {
+                        return $model->origen_ord_id;
+                    } else {
+                        return $model->origen_aula_id;
+                    }
+                },
+                'label' => 'Origen'
+            ],
+            [
+                'attribute' => 'destino_id',
+                'value' => function ($model, $widget) {
+                    if ($model->destino_ord_id !== null) {
+                        return $model->destino_ord_id;
+                    } else {
+                        return $model->destino_aula_id;
+                    }
+                },
+                'label' => 'Destino'
+            ],
             'created_at:datetime'
         ],
     ]) ?>
