@@ -86,18 +86,8 @@ class OrdenadoresController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $antes = $model->aula_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $despues = $model->aula_id;
-            if ($antes !== $despues) {
-                // Crear registro
-                $reg = new RegistroOrd;
-                $reg->ordenador_id = $model->id;
-                $reg->origen_id = $antes;
-                $reg->destino_id = $despues;
-                $reg->save();
-            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

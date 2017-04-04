@@ -91,4 +91,16 @@ class Ordenador extends \yii\db\ActiveRecord
     {
         return $this->hasMany(RegistroOrd::className(), ['ordenador_id' => 'id'])->inverseOf('ordenador');
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if (!$insert && isset($changedAttributes['aula_id'])) {
+            $reg = new RegistroOrd;
+            $reg->ordenador_id = $this->id;
+            $reg->origen_id = $changedAttributes['aula_id'];
+            $reg->destino_id = $this->aula_id;
+            $reg->save();
+        }
+    }
 }

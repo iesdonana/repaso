@@ -35,6 +35,20 @@ class Dispositivo extends \yii\db\ActiveRecord
             [['marca_disp', 'modelo_disp'], 'string', 'max' => 255],
             [['aula_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aula::className(), 'targetAttribute' => ['aula_id' => 'id']],
             [['ordenador_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ordenador::className(), 'targetAttribute' => ['ordenador_id' => 'id']],
+            [
+                [
+                    'ordenador_id',
+                    'aula_id'
+                ],
+                function ($attribute, $params, $validator) {
+                    if ($this->ordenador_id === null && $this->aula_id === null) {
+                        $this->addError($attribute, 'El dispositivo debe estar en alguna parte.');
+                    } elseif ($this->ordenador_id !== null && $this->aula_id !== null) {
+                        $this->addError($attribute, 'El dispositivo no puede estar en dos sitios a la vez.');
+                    }
+                },
+                'skipOnEmpty' => false,
+            ],
         ];
     }
 
@@ -74,5 +88,37 @@ class Dispositivo extends \yii\db\ActiveRecord
     public function getRegistros()
     {
         return $this->hasMany(RegistroDisp::className(), ['dispositivo_id' => 'id'])->inverseOf('dispositivo');
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if (!$insert) {
+            if (array_key_exists('aula_id', $changedAttributes)) {
+                $reg = new RegistroDisp;
+                if ($changedAttributes['aula_id'] === null) {
+                    // De ordenador a aula
+                    $reg->origen_ord_id = $changedAttributes['ordenador_id'];
+                    $reg->destino_aula_id = $this->aula_id;
+                } elseif ($this->aula_id === null) {
+                    // De aula a ordenador
+                    $reg->origen_aula_id = $changedAttributes['aula_id'];
+                    $reg->destino_ord_id = $this->ordenador_id;
+                } else {
+                    // De aula a aula
+                    $reg->origen_aula_id = $changedAttributes['aula_id'];
+                    $reg->destino_aula_id = $this->aula_id;
+                }
+            } elseif (array_key_exists('ordenador_id', $changedAttributes)) {
+                $reg = new RegistroDisp;
+                // De ordenador a ordenador
+                $reg->origen_ord_id = $changedAttributes['ordenador_id'];
+                $reg->destino_ord_id = $this->ordenador_id;
+            }
+            if (isset($reg)) {
+                $reg->dispositivo_id = $this->id;
+                $reg->save();
+            }
+        }
     }
 }
