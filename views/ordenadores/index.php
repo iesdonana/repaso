@@ -26,7 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'modelo_ord',
             [
                 'attribute' => 'aula_id',
-                'value' => 'aula.den_aula',
+                'value' => function ($model, $widget) {
+                    return Html::a(
+                        Html::encode($model->aula->den_aula),
+                        ['aulas/view', 'id' => $model->aula_id]
+                    );
+                },
+                'format' => 'html',
             ],
             [
                 'attribute' => 'numero',

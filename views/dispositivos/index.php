@@ -24,7 +24,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'marca_disp',
             'modelo_disp',
-            'ubicacion',
+            [
+                'attribute' => 'ubicacion',
+                'value' => function ($model, $widget) {
+                    if ($model->ordenador_id !== null) {
+                        return Html::a(
+                            Html::encode($model->ubicacion),
+                            ['ordenadores/view', 'id' => $model->ordenador_id]
+                        );
+                    } else {
+                        return Html::a(
+                            Html::encode($model->ubicacion),
+                            ['aulas/view', 'id' => $model->aula_id]
+                        );
+                    }
+                },
+                'format' => 'html',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
