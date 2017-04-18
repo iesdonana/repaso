@@ -63,7 +63,17 @@ class Dispositivo extends \yii\db\ActiveRecord
             'modelo_disp' => 'Modelo',
             'ordenador_id' => 'Ordenador',
             'aula_id' => 'Aula',
+            'ubicacion' => 'Ubicación',
         ];
+    }
+
+    public function getUbicacion()
+    {
+        if ($this->ordenador === null) {
+            return $this->aula->den_aula;
+        } else {
+            return $this->ordenador->nombre;
+        }
     }
 
     /**

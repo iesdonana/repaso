@@ -52,6 +52,11 @@ class Ordenador extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getNombre()
+    {
+        return $this->marca_ord . ' ' . $this->modelo_ord;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

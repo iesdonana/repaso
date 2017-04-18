@@ -12,6 +12,8 @@ use app\models\Dispositivo;
  */
 class DispositivoSearch extends Dispositivo
 {
+    public $ubicacion;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class DispositivoSearch extends Dispositivo
     {
         return [
             [['id', 'ordenador_id', 'aula_id'], 'integer'],
-            [['marca_disp', 'modelo_disp'], 'safe'],
+            [['marca_disp', 'modelo_disp', 'ubicacion'], 'safe'],
         ];
     }
 
@@ -57,16 +59,15 @@ class DispositivoSearch extends Dispositivo
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'ordenador_id' => $this->ordenador_id,
-            'aula_id' => $this->aula_id,
-        ]);
+        $dataProvider->sort->attributes['ubicacion'] = [
+            'asc' => ['ubicacion' => SORT_ASC],
+            'desc' => ['ubicacion' => SORT_DESC],
+        ];
 
-        $query->andFilterWhere(['like', 'marca_disp', $this->marca_disp])
-            ->andFilterWhere(['like', 'modelo_disp', $this->modelo_disp]);
-
+        $query->from('v_dispositivos d')
+            ->andFilterWhere(['like', 'marca_disp', $this->marca_disp])
+            ->andFilterWhere(['like', 'modelo_disp', $this->modelo_disp])
+            ->andFilterWhere(['like', 'ubicacion', $this->ubicacion]);
         return $dataProvider;
     }
 }

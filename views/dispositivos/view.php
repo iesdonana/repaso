@@ -45,24 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'origen_id',
-                'value' => function ($model, $widget) {
-                    if ($model->origen_ord_id !== null) {
-                        return $model->origen_ord_id;
-                    } else {
-                        return $model->origen_aula_id;
-                    }
-                },
+                'value' => $model->origen_ord_id . $model->origen_aula_id,
                 'label' => 'Origen'
             ],
             [
                 'attribute' => 'destino_id',
-                'value' => function ($model, $widget) {
-                    if ($model->destino_ord_id !== null) {
-                        return $model->destino_ord_id;
-                    } else {
-                        return $model->destino_aula_id;
-                    }
-                },
+                'value' => $model->destino_ord_id . $model->destino_aula_id,
                 'label' => 'Destino'
             ],
             'created_at:datetime'

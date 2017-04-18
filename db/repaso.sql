@@ -84,3 +84,13 @@ create table registro_disp
     check ((destino_ord_id is null and destino_aula_id is not null) or
            (destino_ord_id is not null and destino_aula_id is null))
 );
+
+create view v_dispositivos as
+   select d.*,
+          coalesce(
+              a.den_aula,
+              coalesce(o.marca_ord, '') || ' ' || coalesce(o.modelo_ord, '')
+          ) as ubicacion
+     from dispositivos d
+left join aulas a on d.aula_id = a.id
+left join ordenadores o on d.ordenador_id = o.id;

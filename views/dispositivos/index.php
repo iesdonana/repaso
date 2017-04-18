@@ -16,19 +16,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Dispositivo', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear dispositivo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'marca_disp',
             'modelo_disp',
-            'ordenador_id',
-            'aula_id',
+            'ubicacion',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
