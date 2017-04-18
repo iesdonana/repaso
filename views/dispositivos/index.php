@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'marca_disp',
             'modelo_disp',
             'ubicacion',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

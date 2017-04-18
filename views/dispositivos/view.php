@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Dispositivo */
 
-$this->title = $model->id;
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Dispositivos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -30,11 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'marca_disp',
             'modelo_disp',
-            'ordenador_id',
-            'aula_id',
+            'ubicacion',
         ],
     ]) ?>
 
@@ -45,15 +43,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'origen_id',
-                'value' => $model->origen_ord_id . $model->origen_aula_id,
-                'label' => 'Origen'
+                'value' => function ($reg, $widget) {
+                    if ($reg->origen_ord_id !== null) {
+                        return $reg->origenOrd->nombre;
+                    } else {
+                        return $reg->origenAula->den_aula;
+                    }
+                },
+                'label' => 'Origen',
             ],
             [
                 'attribute' => 'destino_id',
-                'value' => $model->destino_ord_id . $model->destino_aula_id,
-                'label' => 'Destino'
+                'value' => function ($reg, $widget) {
+                    if ($reg->destino_ord_id !== null) {
+                        return $reg->destinoOrd->nombre;
+                    } else {
+                        return $reg->destinoAula->den_aula;
+                    }
+                },
+                'label' => 'Destino',
             ],
-            'created_at:datetime'
+            'created_at:datetime',
         ],
     ]) ?>
 

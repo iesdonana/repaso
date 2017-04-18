@@ -67,6 +67,11 @@ class Dispositivo extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getNombre()
+    {
+        return $this->marca_disp . ' ' . $this->modelo_disp;
+    }
+
     public function getUbicacion()
     {
         if ($this->ordenador === null) {
