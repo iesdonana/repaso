@@ -4,6 +4,7 @@ use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -13,6 +14,25 @@ use yii\widgets\DetailView;
 $this->title = $model->marca_ord . ' ' . $model->modelo_ord;
 $this->params['breadcrumbs'][] = ['label' => 'Ordenadores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$url = Url::to(['ordenadores/borrar-historial']);
+$id = $model->id;
+
+$js = <<<EOT
+    $('#borrarHistorial').click(function () {
+        $.ajax({
+            url: "$url",
+            type: 'POST',
+            data: { "id": "$id" },
+            success: function (data, status, xhr) {
+                $('#historial').empty();
+            }
+        });
+    });
+EOT;
+
+$this->registerJs($js);
+
 ?>
 <div class="ordenador-view">
 
@@ -38,6 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <h2>Dispositivos que contiene</h2>
+
     <?= GridView::widget([
         'dataProvider' => new ActiveDataProvider([
             'query' => $model->getDispositivos(),
@@ -52,7 +74,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <h2>Historial de movimientos</h2>
+
     <?= GridView::widget([
+        'options' => [
+            'id' => 'historial',
+            'class' => 'grid-view',
+        ],
         'dataProvider' => new ActiveDataProvider([
             'query' => $model->getRegistros(),
         ]),
@@ -62,5 +90,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at:datetime'
         ],
     ]) ?>
+
+    <?= Html::button(
+        'Borrar historial', [
+            'class' => 'btn btn-danger',
+            'id' => 'borrarHistorial',
+        ]) ?>
 
 </div>
