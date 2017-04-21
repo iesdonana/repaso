@@ -37,6 +37,7 @@ class RegistroOrd extends \yii\db\ActiveRecord
             [['origen_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aula::className(), 'targetAttribute' => ['origen_id' => 'id']],
             [['destino_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aula::className(), 'targetAttribute' => ['destino_id' => 'id']],
             [['ordenador_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ordenador::className(), 'targetAttribute' => ['ordenador_id' => 'id']],
+            [['origen_id'], 'compare', 'compareAttribute' => 'destino_id', 'operator' => '!=' ],
         ];
     }
 

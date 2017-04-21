@@ -63,7 +63,8 @@ create table registro_ord
     destino_id   bigint      not null constraint fk_registro_ord_destino
                                       references aulas (id)
                                       on delete no action on update cascade,
-    created_at   timestamptz not null default current_timestamp
+    created_at   timestamptz not null default current_timestamp,
+    constraint ck_lugares_distintos check (origen_id != destino_id)
 );
 
 drop table if exists registro_disp cascade;

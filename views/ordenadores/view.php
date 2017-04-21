@@ -15,7 +15,7 @@ $this->title = $model->marca_ord . ' ' . $model->modelo_ord;
 $this->params['breadcrumbs'][] = ['label' => 'Ordenadores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$url = Url::to(['ordenadores/borrar-historial']);
+$url = Url::to(['borrar-historial']);
 $id = $model->id;
 
 $js = <<<EOT
@@ -32,7 +32,6 @@ $js = <<<EOT
 EOT;
 
 $this->registerJs($js);
-
 ?>
 <div class="ordenador-view">
 

@@ -3,7 +3,10 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Aula;
+use app\models\Ordenador;
 use app\models\Dispositivo;
+use app\models\RegistroDisp;
 use app\models\DispositivoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -27,6 +30,17 @@ class DispositivosController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionBorrarHistorial()
+    {
+        $id = Yii::$app->request->post('id');
+
+        if ($id === null || Dispositivo::findOne($id) === null) {
+            throw new NotFoundHttpException('Dispositivo no encontrado');
+        }
+
+        RegistroDisp::deleteAll(['dispositivo_id' => $id]);
     }
 
     /**
@@ -89,6 +103,8 @@ class DispositivosController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'aulas' => Aula::findDropDownList(),
+                'ordenadores' => Ordenador::findDropDownList(),
             ]);
         }
     }

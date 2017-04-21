@@ -41,9 +41,9 @@ class Dispositivo extends \yii\db\ActiveRecord
                     'aula_id'
                 ],
                 function ($attribute, $params, $validator) {
-                    if ($this->ordenador_id === null && $this->aula_id === null) {
+                    if ($this->ordenador_id == null && $this->aula_id == null) {
                         $this->addError($attribute, 'El dispositivo debe estar en alguna parte.');
-                    } elseif ($this->ordenador_id !== null && $this->aula_id !== null) {
+                    } elseif ($this->ordenador_id != null && $this->aula_id != null) {
                         $this->addError($attribute, 'El dispositivo no puede estar en dos sitios a la vez.');
                     }
                 },

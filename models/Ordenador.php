@@ -52,6 +52,15 @@ class Ordenador extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function findDropDownList()
+    {
+        return self::find()
+            ->select("(marca_ord || ' ' || modelo_ord) as nombre, id")
+            ->indexBy('id')
+            ->orderBy('nombre')
+            ->column();
+    }
+
     public function getNombre()
     {
         return $this->marca_ord . ' ' . $this->modelo_ord;
@@ -100,6 +109,7 @@ class Ordenador extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
+        var_dump($changedAttributes);
         if (!$insert && isset($changedAttributes['aula_id'])) {
             $reg = new RegistroOrd;
             $reg->ordenador_id = $this->id;
