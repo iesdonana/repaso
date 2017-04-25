@@ -2,6 +2,10 @@
 
 namespace app\models;
 
+use yii\data\Sort;
+use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
+
 /**
  * This is the model class for table "ordenadores".
  *
@@ -59,6 +63,60 @@ class Ordenador extends \yii\db\ActiveRecord
             ->indexBy('id')
             ->orderBy('nombre')
             ->column();
+    }
+
+    public function verDispositivos()
+    {
+        return new ActiveDataProvider([
+            'query' => $this->getDispositivos(),
+            'pagination' => new Pagination([
+                'pageSize' => 1,
+                'pageParam' => 'pageDisp',
+            ]),
+            'sort' => new Sort([
+                'sortParam' => 'sortDisp',
+                'attributes' => [
+                    'nombre' => [
+                        'asc' => [
+                            'marca_disp' => SORT_ASC,
+                            'modelo_disp' => SORT_ASC,
+                        ],
+                        'desc' => [
+                            'marca_disp' => SORT_DESC,
+                            'modelo_disp' => SORT_DESC,
+                        ],
+                    ],
+                ],
+            ])
+        ]);
+    }
+
+    public function verHistorial()
+    {
+        return new ActiveDataProvider([
+            'query' => $this->getRegistros()->joinWith(['origen o', 'destino d']),
+            'pagination' => new Pagination([
+                'pageSize' => 2,
+                'pageParam' => 'pageHist',
+            ]),
+            'sort' => new Sort([
+                'sortParam' => 'sortHist',
+                'attributes' => [
+                    'origen' => [
+                        'asc' => ['o.den_aula' => SORT_ASC],
+                        'desc' => ['o.den_aula' => SORT_DESC],
+                    ],
+                    'destino' => [
+                        'asc' => ['d.den_aula' => SORT_ASC],
+                        'desc' => ['d.den_aula' => SORT_DESC],
+                    ],
+                    'created_at' => [
+                        'asc' => ['created_at' => SORT_ASC],
+                        'desc' => ['created_at' => SORT_DESC],
+                    ],
+                ],
+            ]),
+        ]);
     }
 
     public function getNombre()

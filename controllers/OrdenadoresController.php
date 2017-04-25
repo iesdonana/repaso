@@ -7,6 +7,9 @@ use app\models\Aula;
 use app\models\Ordenador;
 use app\models\RegistroOrd;
 use app\models\OrdenadorSearch;
+use yii\data\Sort;
+use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,8 +67,13 @@ class OrdenadoresController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $dataProviderDisp = $model->verDispositivos();
+        $dataProviderHist = $model->verHistorial();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'dataProviderDisp' => $dataProviderDisp,
+            'dataProviderHist' => $dataProviderHist,
         ]);
     }
 

@@ -37,11 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'numero',
                 'value' => function ($model, $widget) {
-                    return count($model->dispositivos);
+                    return Html::a(
+                        count($model->dispositivos),
+                        ['ordenadores/view', 'id' => $model->id]
+                    );
                 },
+                'format' => 'html',
                 'label' => 'Número de dispositivos',
             ],
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
