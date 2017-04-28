@@ -58,11 +58,12 @@ class Ordenador extends \yii\db\ActiveRecord
 
     public static function findDropDownList()
     {
-        return self::find()
+        $lista = self::find()
             ->select("(marca_ord || ' ' || modelo_ord) as nombre, id")
             ->indexBy('id')
             ->orderBy('nombre')
             ->column();
+        return ['' => ''] + $lista;
     }
 
     public function verDispositivos()
