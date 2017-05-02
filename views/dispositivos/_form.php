@@ -11,19 +11,15 @@ use yii\widgets\ActiveForm;
 <div class="dispositivo-form">
 
     <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'marca_disp')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'modelo_disp')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'ordenador_id')->dropDownList($ordenadores) ?>
+        <?= $form->field($model, 'aula_id')->dropDownList($aulas) ?>
+        <?= $form->field($model, 'ubicacion_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'marca_disp')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'modelo_disp')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ordenador_id')->dropDownList($ordenadores) ?>
-
-    <?= $form->field($model, 'aula_id')->dropDownList($aulas) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     <?php ActiveForm::end(); ?>
 
 </div>
