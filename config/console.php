@@ -8,6 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+    'language' => 'es-ES',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

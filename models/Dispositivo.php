@@ -44,14 +44,12 @@ class Dispositivo extends \yii\db\ActiveRecord
             [
                 ['aula_id'],
                 'exist',
-                'skipOnError' => true,
                 'targetClass' => Aula::className(),
                 'targetAttribute' => ['aula_id' => 'id']
             ],
             [
                 ['ordenador_id'],
                 'exist',
-                'skipOnError' => true,
                 'targetClass' => Ordenador::className(),
                 'targetAttribute' => ['ordenador_id' => 'id']
             ],
