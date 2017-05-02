@@ -31,29 +31,33 @@ class Dispositivo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['ordenador_id', 'aula_id'], 'default'],
             [['ordenador_id', 'aula_id'], 'integer'],
-            [['ordenador_id', 'aula_id'], 'filter', 'filter' => function ($value) {
-                if ($value === '' || $value === null) {
-                    return null;
-                } else {
-                    return intval($value);
-                }
-            }],
-            [['marca_disp', 'modelo_disp'], 'string', 'max' => 255],
-            [['aula_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aula::className(), 'targetAttribute' => ['aula_id' => 'id']],
-            [['ordenador_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ordenador::className(), 'targetAttribute' => ['ordenador_id' => 'id']],
             [
-                [
-                    'ordenador_id',
-                    'aula_id'
-                ],
-                function ($attribute, $params, $validator) {
-                    if ($this->ordenador_id == null && $this->aula_id == null) {
-                        $this->addError($attribute, 'El dispositivo debe estar en alguna parte.');
-                    } elseif ($this->ordenador_id != null && $this->aula_id != null) {
-                        $this->addError($attribute, 'El dispositivo no puede estar en dos sitios a la vez.');
-                    }
-                },
+                ['ordenador_id', 'aula_id'],
+                'filter',
+                'filter' => 'intval',
+                'skipOnEmpty' => true,
+            ],
+            [['marca_disp', 'modelo_disp'], 'string', 'max' => 255],
+            [['marca_disp', 'modelo_disp'], 'trim'],
+            [
+                ['aula_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Aula::className(),
+                'targetAttribute' => ['aula_id' => 'id']
+            ],
+            [
+                ['ordenador_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Ordenador::className(),
+                'targetAttribute' => ['ordenador_id' => 'id']
+            ],
+            [
+                ['ordenador_id', 'aula_id'],
+                'ubicacionCorrecta',
                 'skipOnEmpty' => false,
             ],
         ];
@@ -72,6 +76,21 @@ class Dispositivo extends \yii\db\ActiveRecord
             'aula_id' => 'Aula',
             'ubicacion' => 'Ubicación',
         ];
+    }
+
+    public function ubicacionCorrecta($attribute, $params, $validator)
+    {
+        if ($this->ordenador_id == null && $this->aula_id == null) {
+            $this->addError(
+                $attribute,
+                'El dispositivo debe estar en alguna parte.'
+            );
+        } elseif ($this->ordenador_id != null && $this->aula_id != null) {
+            $this->addError(
+                $attribute,
+                'El dispositivo no puede estar en dos sitios a la vez.'
+            );
+        }
     }
 
     public function getNombre()
