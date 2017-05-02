@@ -168,7 +168,6 @@ class Ordenador extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        var_dump($changedAttributes);
         if (!$insert && isset($changedAttributes['aula_id'])) {
             $reg = new RegistroOrd;
             $reg->ordenador_id = $this->id;
