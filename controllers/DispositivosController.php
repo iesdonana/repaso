@@ -7,6 +7,7 @@ use app\models\Aula;
 use app\models\Ordenador;
 use app\models\Dispositivo;
 use app\models\RegistroDisp;
+use app\models\DispositivoForm;
 use app\models\DispositivoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -96,15 +97,15 @@ class DispositivosController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $disp = $this->findModel($id);
+        $model = new DispositivoForm($disp);
+        $model->setOldAttributes($disp->getOldAttributes());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'aulas' => Aula::findDropDownList(),
-                'ordenadores' => Ordenador::findDropDownList(),
             ]);
         }
     }

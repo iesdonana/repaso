@@ -13,8 +13,6 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'marca_disp')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'modelo_disp')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'ordenador_id')->dropDownList($ordenadores) ?>
-        <?= $form->field($model, 'aula_id')->dropDownList($aulas) ?>
         <?= $form->field($model, 'ubicacion_id')->textInput(['maxlength' => true]) ?>
 
         <div class="form-group">
