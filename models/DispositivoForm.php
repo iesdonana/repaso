@@ -7,6 +7,8 @@ use yii\base\Model;
 class DispositivoForm extends Dispositivo
 {
     public $ubicacion_id;
+    public $nuevo_aula_id;
+    public $nuevo_ordenador_id;
 
     public function rules()
     {
@@ -18,29 +20,58 @@ class DispositivoForm extends Dispositivo
             [['ubicacion_id'], 'trim'],
             [['ubicacion_id'], 'string', 'min' => 2],
             [['ubicacion_id'], function ($attribute, $params, $validator) {
-                if (!in_array($this->$attribute[0], ['a', 'o'])) {
+                $procedencia = $this->$attribute[0];
+                $ubicacion = substr($this->$attribute, 1);
+
+                if (!in_array($procedencia, ['a', 'o']) ||
+                    !ctype_digit($ubicacion)) {
                     $this->addError(
                         $attribute,
                         'La ubicación tiene una codificación incorrecta.'
                     );
+                    return;
+                }
+
+                $ubicacion = (int) $ubicacion;
+
+                switch ($procedencia) {
+                    case 'a':
+                        $this->nuevo_aula_id = $ubicacion;
+                        $this->nuevo_ordenador_id = null;
+                        break;
+
+                    case 'o':
+                        $this->nuevo_ordenador_id = $ubicacion;
+                        $this->nuevo_aula_id = null;
+                        break;
                 }
             }],
-            [['ubicacion_id'], 'filter', 'filter' => function ($value) {
-                $ubicacion = substr($value, 1);
-                $procedencia = $value[0];
-                if ($procedencia === 'a') {
-                    $this->aula_id = $ubicacion;
-                    $this->ordenador_id = null;
-                } elseif ($procedencia === 'o') {
-                    $this->ordenador_id = $ubicacion;
-                    $this->aula_id = null;
-                }
-                return $ubicacion;
+            ['ordenador_id', 'filter', 'filter' => function ($value) {
+                return $this->nuevo_ordenador_id;
             }],
-            [['ordenador_id', 'aula_id'], 'integer'],
-            [['ordenador_id', 'aula_id'], 'filter', 'filter' => 'intval', 'skipOnEmpty' => true],
+            ['aula_id', 'filter', 'filter' => function ($value) {
+                return $this->nuevo_aula_id;
+            }],
+            [
+                ['ubicacion_id'],
+                'exist',
+                'targetClass' => Aula::className(),
+                'targetAttribute' => ['aula_id' => 'id'],
+                'isEmpty' => function ($value) {
+                    return $this->aula_id === null;
+                }
+            ],
+            [
+                ['ubicacion_id'],
+                'exist',
+                'targetClass' => Ordenador::className(),
+                'targetAttribute' => ['ordenador_id' => 'id'],
+                'isEmpty' => function ($value) {
+                    return $this->ordenador_id === null;
+                }
+            ],
         ];
-        return $rules + parent::rules();
+        return array_merge($rules, parent::rules());
     }
 
     /**
