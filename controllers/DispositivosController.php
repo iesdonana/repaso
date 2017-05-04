@@ -100,12 +100,15 @@ class DispositivosController extends Controller
         $disp = $this->findModel($id);
         $model = new DispositivoForm($disp);
         $model->setOldAttributes($disp->getOldAttributes());
+        $model->ubicacion_id = $model->codificarUbicacion();
+        $ubicaciones = $this->listaUbicaciones();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'ubicaciones' => $ubicaciones,
             ]);
         }
     }
@@ -137,5 +140,18 @@ class DispositivosController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    private function listaUbicaciones()
+    {
+        $aulas = Aula::find()
+            ->select("den_aula, ('a' || id) as id")
+            ->indexBy('id')
+            ->column();
+        $ordenadores = Ordenador::find()
+            ->select("(marca_ord || ' ' || modelo_ord) as nombre, ('o' || id) as id")
+            ->indexBy('id')
+            ->column();
+        return array_merge($aulas, $ordenadores);
     }
 }
