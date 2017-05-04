@@ -152,6 +152,9 @@ class DispositivosController extends Controller
             ->select("(marca_ord || ' ' || modelo_ord) as nombre, ('o' || id) as id")
             ->indexBy('id')
             ->column();
-        return array_merge($aulas, $ordenadores);
+        return [
+            'Aulas' => $aulas,
+            'Ordenadores' => $ordenadores,
+        ];
     }
 }
