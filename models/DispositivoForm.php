@@ -66,6 +66,11 @@ class DispositivoForm extends Dispositivo
         return array_merge($rules, parent::rules());
     }
 
+    public function attributeLabels()
+    {
+        return array_merge(['ubicacion_id' => 'Ubicación'], parent::attributeLabels());
+    }
+
     /**
      * @inheritdoc
      */
