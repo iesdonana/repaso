@@ -78,13 +78,16 @@ class DispositivosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Dispositivo();
+        $model = new DispositivoForm;
+        $model->ubicacion_id = $model->codificarUbicacion();
+        $ubicaciones = $this->listaUbicaciones();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'ubicaciones' => $ubicaciones,
             ]);
         }
     }
