@@ -7,8 +7,10 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'es-ES',
-    'timeZone' => 'Europe/Madrid',
     'components' => [
+        'formatter' => [
+            'defaultTimeZone' => 'Europe/Madrid',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Iw4uM5e51DyVe0jgYMh-m6WjmoYz7-YI',
@@ -17,8 +19,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'app\models\Usuario',
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
