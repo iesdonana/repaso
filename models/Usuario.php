@@ -14,6 +14,12 @@ use Yii;
  */
 class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const SCENARIO_DEFAULT = 'default';
+    const SCENARIO_FORM = 'form';
+
+    public $passwordForm;
+    public $passwordConfirmForm;
+
     /**
      * @inheritdoc
      */
@@ -28,12 +34,24 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['nombre', 'password', 'tipo'], 'required'],
+            [['nombre', 'tipo'], 'required'],
+            [['password'], 'required', 'on' => [self::SCENARIO_DEFAULT]],
             [['nombre'], 'string', 'max' => 255],
             [['password'], 'string', 'max' => 60],
             [['tipo'], 'string', 'max' => 1],
             [['tipo'], 'in', 'range' => ['U', 'A']],
             [['nombre'], 'unique'],
+            [
+                ['passwordForm', 'passwordConfirmForm'],
+                'required',
+                'on' => [self::SCENARIO_FORM],
+            ],
+            [
+                ['passwordForm'],
+                'compare',
+                'compareAttribute' => 'passwordConfirmForm',
+                'on' => [self::SCENARIO_FORM],
+            ],
         ];
     }
 
@@ -92,5 +110,16 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    public function beforeSave($insert)
+    {
+        parent::beforeSave($insert);
+
+        if ($this->scenario === self::SCENARIO_FORM) {
+            $this->password =
+                Yii::$app->security->generatePasswordHash($this->passwordForm);
+        }
+        return true;
     }
 }
