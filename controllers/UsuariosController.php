@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use Yii;
+use app\components\UsuariosHelper;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +22,28 @@ class UsuariosController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        //'actions' => ['index', 'create', 'delete', 'update', 'view'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return UsuariosHelper::isAdmin();
+                        },
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'view'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $id = Yii::$app->request->get('id');
+                            return Yii::$app->user->id == $id;
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

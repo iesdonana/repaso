@@ -1,5 +1,6 @@
 <?php
 
+use app\components\UsuariosHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -13,12 +14,12 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'passwordForm')->passwordInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'passwordConfirmForm')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tipo')->textInput(['maxlength' => true]) ?>
+    <?php if (UsuariosHelper::isAdmin()): ?>
+        <?= $form->field($model, 'tipo')->textInput(['maxlength' => true]) ?>
+    <?php endif; ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

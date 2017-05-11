@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\components\UsuariosHelper;
 
 /**
  * This is the model class for table "usuarios".
@@ -33,13 +34,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function rules()
     {
-        return [
+        $rules = [
             [['nombre', 'tipo'], 'required'],
             [['password'], 'required', 'on' => [self::SCENARIO_DEFAULT]],
             [['nombre'], 'string', 'max' => 255],
             [['password'], 'string', 'max' => 60],
-            [['tipo'], 'string', 'max' => 1],
-            [['tipo'], 'in', 'range' => ['U', 'A']],
             [['nombre'], 'unique'],
             [
                 ['passwordForm', 'passwordConfirmForm'],
@@ -53,6 +52,17 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 'on' => [self::SCENARIO_FORM],
             ],
         ];
+        if (UsuariosHelper::isAdmin()) {
+            $rules[] = [['tipo'], 'string', 'max' => 1];
+            $rules[] = [['tipo'], 'in', 'range' => ['U', 'A']];
+        }
+        return $rules;
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+//        if (!UsuariosHelper::isAdmin())
     }
 
     /**
@@ -65,7 +75,14 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'nombre' => 'Nombre',
             'password' => 'Contraseña',
             'tipo' => 'Tipo',
+            'passwordForm' => 'Contraseña',
+            'passwordConfirmForm' => 'Confirmar contraseña',
         ];
+    }
+
+    public function getIsAdmin()
+    {
+        return $this->tipo === 'A';
     }
 
     public static function findIdentity($id)
@@ -114,12 +131,15 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function beforeSave($insert)
     {
-        parent::beforeSave($insert);
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
 
         if ($this->scenario === self::SCENARIO_FORM) {
             $this->password =
                 Yii::$app->security->generatePasswordHash($this->passwordForm);
         }
+
         return true;
     }
 }
