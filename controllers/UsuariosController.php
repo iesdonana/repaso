@@ -88,7 +88,7 @@ class UsuariosController extends Controller
     public function actionCreate()
     {
         $model = new Usuario();
-        $model->scenario = Usuario::SCENARIO_FORM;
+        $model->scenario = Usuario::SCENARIO_FORM_CREATE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -108,7 +108,7 @@ class UsuariosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->scenario = Usuario::SCENARIO_FORM;
+        $model->scenario = Usuario::SCENARIO_FORM_UPDATE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

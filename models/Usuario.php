@@ -16,7 +16,8 @@ use app\components\UsuariosHelper;
 class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     const SCENARIO_DEFAULT = 'default';
-    const SCENARIO_FORM = 'form';
+    const SCENARIO_FORM_CREATE = 'form-create';
+    const SCENARIO_FORM_UPDATE = 'form-update';
 
     public $passwordForm;
     public $passwordConfirmForm;
@@ -43,13 +44,14 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [
                 ['passwordForm', 'passwordConfirmForm'],
                 'required',
-                'on' => [self::SCENARIO_FORM],
+                'on' => [self::SCENARIO_FORM_CREATE],
             ],
+            [['passwordConfirmForm'], 'safe', 'on' => [self::SCENARIO_FORM_UPDATE]],
             [
                 ['passwordForm'],
                 'compare',
                 'compareAttribute' => 'passwordConfirmForm',
-                'on' => [self::SCENARIO_FORM],
+                'on' => [self::SCENARIO_FORM_CREATE, self::SCENARIO_FORM_UPDATE],
             ],
         ];
         if (UsuariosHelper::isAdmin()) {
@@ -57,12 +59,6 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             $rules[] = [['tipo'], 'in', 'range' => ['U', 'A']];
         }
         return $rules;
-    }
-
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-//        if (!UsuariosHelper::isAdmin())
     }
 
     /**
@@ -135,7 +131,9 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             return false;
         }
 
-        if ($this->scenario === self::SCENARIO_FORM) {
+        if ($this->scenario === self::SCENARIO_FORM_CREATE ||
+           ($this->scenario === self::SCENARIO_FORM_UPDATE &&
+            $this->passwordForm != '')) {
             $this->password =
                 Yii::$app->security->generatePasswordHash($this->passwordForm);
         }
