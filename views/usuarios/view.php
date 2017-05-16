@@ -1,5 +1,6 @@
 <?php
 
+use app\components\UsuariosHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -31,7 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nombre',
             'password',
-            'tipo',
+            [
+                'attribute' => 'tipo',
+                'value' => $model->tipoUsuario,
+            ],
         ],
     ]) ?>
 

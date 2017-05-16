@@ -54,7 +54,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 'on' => [self::SCENARIO_FORM_CREATE, self::SCENARIO_FORM_UPDATE],
             ],
         ];
-        if (!isset(Yii::$app->user) || UsuariosHelper::isAdmin()) {
+        if (Yii::$app->id == 'basic-console' || UsuariosHelper::isAdmin()) {
             $rules[] = [
                 ['tipo'],
                 'required',
@@ -95,6 +95,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getIsAdmin()
     {
         return $this->tipo === 'A';
+    }
+
+    public function getTipoUsuario()
+    {
+        return UsuariosHelper::listaTipos($this->tipo);
     }
 
     public static function findIdentity($id)
