@@ -53,6 +53,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 'compareAttribute' => 'passwordConfirmForm',
                 'on' => [self::SCENARIO_FORM_CREATE, self::SCENARIO_FORM_UPDATE],
             ],
+            [['email'], 'email'],
         ];
         if (Yii::$app->id == 'basic-console' || UsuariosHelper::isAdmin()) {
             $rules[] = [
@@ -152,11 +153,17 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             return false;
         }
 
+        $security = Yii::$app->security;
+
+        if ($insert && $this->scenario === self::SCENARIO_FORM_CREATE) {
+            $this->token_val = $security->generateRandomString();
+        }
+
         if ($this->scenario === self::SCENARIO_FORM_CREATE ||
            ($this->scenario === self::SCENARIO_FORM_UPDATE &&
             $this->passwordForm != '')) {
             $this->password =
-                Yii::$app->security->generatePasswordHash($this->passwordForm);
+                $security->generatePasswordHash($this->passwordForm);
         }
 
         return true;

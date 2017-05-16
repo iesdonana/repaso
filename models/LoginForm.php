@@ -29,6 +29,14 @@ class LoginForm extends Model
             [['username', 'password'], 'required'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            [['username'], function ($attribute, $params) {
+                if (!$this->hasErrors()) {
+                    $user = $this->getUser();
+                    if ($user && $user->token_val !== null) {
+                        $this->addError($attribute, 'Usuario no validado.');
+                    }
+                }
+            }],
         ];
     }
 

@@ -2,11 +2,13 @@ drop table if exists usuarios cascade;
 
 create table usuarios
 (
-    id       bigserial    constraint pk_usuarios primary key,
-    nombre   varchar(255) not null constraint uq_usuarios_nombre unique,
-    password varchar(60)  not null,
-    tipo     char(1)      not null default 'U'
-                          constraint ck_tipo_usuario check (tipo in ('U', 'A'))
+    id        bigserial     constraint pk_usuarios primary key,
+    nombre    varchar(255)  not null constraint uq_usuarios_nombre unique,
+    password  varchar(60)   not null,
+    email     varchar(255),
+    tipo      char(1)       not null default 'U'
+                            constraint ck_tipo_usuario check (tipo in ('U', 'A')),
+    token_val varchar(32)   constraint uq_usuarios_token_val unique
 );
 
 drop table if exists aulas cascade;

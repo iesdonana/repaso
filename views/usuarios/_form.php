@@ -16,6 +16,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'passwordForm')->passwordInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'passwordConfirmForm')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?php if (UsuariosHelper::isAdmin()): ?>
         <?= $form->field($model, 'tipo')->dropDownList(UsuariosHelper::listaTipos()) ?>
