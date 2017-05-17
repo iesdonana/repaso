@@ -3,6 +3,7 @@
 namespace app\components;
 
 use Yii;
+use yii\helpers\Html;
 
 class UsuariosHelper extends \yii\base\Component
 {
@@ -29,5 +30,21 @@ class UsuariosHelper extends \yii\base\Component
         ];
 
         return $key === null ? $lista : $lista[$key];
+    }
+
+    public static function menu()
+    {
+        return static::isGuest() ? (
+            ['label' => 'Login', 'url' => ['/site/login']]
+        ) : (
+            '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . static::get('nombre') . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>'
+        );
     }
 }

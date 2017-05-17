@@ -5,6 +5,7 @@
 
 use app\components\UsuariosHelper;
 use app\helpers\Mensaje;
+use app\widgets\Notificacion;
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -46,18 +47,7 @@ AppAsset::register($this);
             UsuariosHelper::isAdmin() ? (
                 ['label' => 'Usuarios', 'url' => ['usuarios/index']]
             ) : '',
-            UsuariosHelper::isGuest() ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . UsuariosHelper::get('nombre') . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+            UsuariosHelper::menu(),
         ],
     ]);
     NavBar::end();
@@ -67,22 +57,7 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?php if (Mensaje::hayExito()): ?>
-            <?= Alert::widget([
-                'options' => [
-                    'class' => 'alert-success',
-                ],
-                'body' => Mensaje::exito(),
-            ]) ?>
-        <?php endif; ?>
-        <?php if (Mensaje::hayFracaso()): ?>
-            <?= Alert::widget([
-                'options' => [
-                    'class' => 'alert-danger',
-                ],
-                'body' => Mensaje::fracaso(),
-            ]) ?>
-        <?php endif; ?>
+        <?= Notificacion::widget() ?>
         <?= $content ?>
     </div>
 </div>
