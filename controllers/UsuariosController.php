@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\components\UsuariosHelper;
+use app\helpers\Mensaje;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
 use yii\filters\AccessControl;
@@ -67,6 +68,7 @@ class UsuariosController extends Controller
 
         $usuario->token_val = null;
         $x = $usuario->save();
+        Mensaje::exito('Usuario validado. Inicie sesión.');
         return $this->redirect(['site/login']);
     }
 
@@ -117,6 +119,7 @@ class UsuariosController extends Controller
                                para activar su cuenta:<br/>
                                <a href=\"$url\">Pinche aquí</a>")
                 ->send();
+            Mensaje::exito('Se le ha enviado un correo para validar su cuenta.');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
