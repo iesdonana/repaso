@@ -50,14 +50,17 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/view/<id:\d+>' => 'usuarios/view',
+                'usuarios/<id:\d+>' => 'usuarios/view',
+                'usuarios/update/<id:\d+>' => 'usuarios/update',
+                'usuarios/delete/<id:\d+>' => 'usuarios/delete',
+                'usuarios/activar/<token>' => 'usuarios/activar',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
