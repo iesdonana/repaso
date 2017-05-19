@@ -4,7 +4,9 @@ namespace app\models;
 
 use Yii;
 use app\components\UsuariosHelper;
+use yii\helpers\Url;
 use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "usuarios".
@@ -177,7 +179,20 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         $this->foto = UploadedFile::getInstance($this, 'foto');
         if ($this->foto !== null) {
-            $this->foto->saveAs('fotos/' . $this->id . '.jpg');
+            $ruta = "fotos/{$this->id}.jpg";
+            $this->foto->saveAs($ruta);
+            Image::thumbnail($ruta, 100, null)->save($ruta, ['quality' => 50]);
+        }
+    }
+
+    public function getRutaImagen()
+    {
+        $ruta = "fotos/{$this->id}.jpg";
+
+        if (file_exists($ruta)) {
+            return Url::to("/$ruta");
+        } else {
+            return Url::to('/fotos/default.jpg');
         }
     }
 }

@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'foto',
-                'value' => Url::to("/fotos/{$model->id}.jpg"),
+                'value' => $model->rutaImagen,
                 'format' => 'image',
             ],
         ],
