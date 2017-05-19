@@ -10,6 +10,7 @@ use app\models\UsuarioSearch;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -34,7 +35,6 @@ class UsuariosController extends Controller
                     ],
                     [
                         'allow' => true,
-                        //'actions' => ['index', 'create', 'delete', 'update', 'view'],
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return UsuariosHelper::isAdmin();
@@ -140,6 +140,7 @@ class UsuariosController extends Controller
         $model->scenario = Usuario::SCENARIO_FORM_UPDATE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->uploadFile();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

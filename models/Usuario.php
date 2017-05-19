@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\components\UsuariosHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "usuarios".
@@ -21,6 +22,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public $passwordForm;
     public $passwordConfirmForm;
+
+    public $foto;
 
     /**
      * @inheritdoc
@@ -54,6 +57,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 'on' => [self::SCENARIO_FORM_CREATE, self::SCENARIO_FORM_UPDATE],
             ],
             [['email'], 'email'],
+            [['foto'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg'],
         ];
         if (Yii::$app->id == 'basic-console' || UsuariosHelper::isAdmin()) {
             $rules[] = [
@@ -167,5 +171,13 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
 
         return true;
+    }
+
+    public function uploadFile()
+    {
+        $this->foto = UploadedFile::getInstance($this, 'foto');
+        if ($this->foto !== null) {
+            $this->foto->saveAs('fotos/' . $this->id . '.jpg');
+        }
     }
 }

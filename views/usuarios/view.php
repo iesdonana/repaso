@@ -1,6 +1,7 @@
 <?php
 
 use app\components\UsuariosHelper;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -35,6 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'tipo',
                 'value' => $model->tipoUsuario,
+            ],
+            [
+                'attribute' => 'foto',
+                'value' => Url::to("/fotos/{$model->id}.jpg"),
+                'format' => 'image',
             ],
         ],
     ]) ?>
