@@ -53,6 +53,9 @@ class OrdenadoresController extends Controller
         ];
     }
 
+    /**
+     * Borra el historial de un Ordenador
+     */
     public function actionBorrarHistorial()
     {
         $id = Yii::$app->request->post('id');
@@ -97,7 +100,7 @@ class OrdenadoresController extends Controller
     }
 
     /**
-     * Creates a new Ordenador model.
+     * Crea un nuevo modelo Ordenador.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */

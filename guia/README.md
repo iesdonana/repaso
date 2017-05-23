@@ -10,3 +10,4 @@ function prueba($x)
 }
 ```
 
+[Descripción general](descripcion-general.md)

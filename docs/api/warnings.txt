@@ -1,0 +1,444 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 18
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$basePath'
+        )
+
+    [1] => Array
+        (
+            [line] => 18
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$basePath'
+        )
+
+    [2] => Array
+        (
+            [line] => 19
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$baseUrl'
+        )
+
+    [3] => Array
+        (
+            [line] => 19
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$baseUrl'
+        )
+
+    [4] => Array
+        (
+            [line] => 20
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$css'
+        )
+
+    [5] => Array
+        (
+            [line] => 20
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$css'
+        )
+
+    [6] => Array
+        (
+            [line] => 23
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$js'
+        )
+
+    [7] => Array
+        (
+            [line] => 23
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$js'
+        )
+
+    [8] => Array
+        (
+            [line] => 25
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$depends'
+        )
+
+    [9] => Array
+        (
+            [line] => 25
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$depends'
+        )
+
+    [10] => Array
+        (
+            [line] => 36
+            [file] => controllers/DispositivosController.php
+            [message] => No docblock for element 'actionBorrarHistorial'
+        )
+
+    [11] => Array
+        (
+            [line] => 12
+            [file] => controllers/SiteController.php
+            [message] => No docblock for element 'app\controllers\SiteController'
+        )
+
+    [12] => Array
+        (
+            [line] => 63
+            [file] => controllers/UsuariosController.php
+            [message] => No docblock for element 'actionActivar'
+        )
+
+    [13] => Array
+        (
+            [line] => 52
+            [file] => models/Aula.php
+            [message] => No docblock for element 'findDropDownList'
+        )
+
+    [14] => Array
+        (
+            [line] => 13
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$name'
+        )
+
+    [15] => Array
+        (
+            [line] => 13
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$name'
+        )
+
+    [16] => Array
+        (
+            [line] => 14
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$email'
+        )
+
+    [17] => Array
+        (
+            [line] => 14
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$email'
+        )
+
+    [18] => Array
+        (
+            [line] => 15
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$subject'
+        )
+
+    [19] => Array
+        (
+            [line] => 15
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$subject'
+        )
+
+    [20] => Array
+        (
+            [line] => 16
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$body'
+        )
+
+    [21] => Array
+        (
+            [line] => 16
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$body'
+        )
+
+    [22] => Array
+        (
+            [line] => 17
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$verifyCode'
+        )
+
+    [23] => Array
+        (
+            [line] => 17
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$verifyCode'
+        )
+
+    [24] => Array
+        (
+            [line] => 79
+            [file] => models/Dispositivo.php
+            [message] => No docblock for element 'ubicacionCorrecta'
+        )
+
+    [25] => Array
+        (
+            [line] => 94
+            [file] => models/Dispositivo.php
+            [message] => No docblock for element 'getNombre'
+        )
+
+    [26] => Array
+        (
+            [line] => 99
+            [file] => models/Dispositivo.php
+            [message] => No docblock for element 'getUbicacion'
+        )
+
+    [27] => Array
+        (
+            [line] => 132
+            [file] => models/Dispositivo.php
+            [message] => No docblock for element 'afterSave'
+        )
+
+    [28] => Array
+        (
+            [line] => 7
+            [file] => models/DispositivoForm.php
+            [message] => No docblock for element 'app\models\DispositivoForm'
+        )
+
+    [29] => Array
+        (
+            [line] => 9
+            [file] => models/DispositivoForm.php
+            [message] => No docblock for element '$ubicacion_id'
+        )
+
+    [30] => Array
+        (
+            [line] => 9
+            [file] => models/DispositivoForm.php
+            [message] => No short description for element '$ubicacion_id'
+        )
+
+    [31] => Array
+        (
+            [line] => 11
+            [file] => models/DispositivoForm.php
+            [message] => No docblock for element 'rules'
+        )
+
+    [32] => Array
+        (
+            [line] => 69
+            [file] => models/DispositivoForm.php
+            [message] => No docblock for element 'attributeLabels'
+        )
+
+    [33] => Array
+        (
+            [line] => 83
+            [file] => models/DispositivoForm.php
+            [message] => No docblock for element 'codificarUbicacion'
+        )
+
+    [34] => Array
+        (
+            [line] => 15
+            [file] => models/DispositivoSearch.php
+            [message] => No docblock for element '$ubicacion'
+        )
+
+    [35] => Array
+        (
+            [line] => 15
+            [file] => models/DispositivoSearch.php
+            [message] => No short description for element '$ubicacion'
+        )
+
+    [36] => Array
+        (
+            [line] => 16
+            [file] => models/LoginForm.php
+            [message] => No docblock for element '$username'
+        )
+
+    [37] => Array
+        (
+            [line] => 16
+            [file] => models/LoginForm.php
+            [message] => No short description for element '$username'
+        )
+
+    [38] => Array
+        (
+            [line] => 17
+            [file] => models/LoginForm.php
+            [message] => No docblock for element '$password'
+        )
+
+    [39] => Array
+        (
+            [line] => 17
+            [file] => models/LoginForm.php
+            [message] => No short description for element '$password'
+        )
+
+    [40] => Array
+        (
+            [line] => 59
+            [file] => models/Ordenador.php
+            [message] => No docblock for element 'findDropDownList'
+        )
+
+    [41] => Array
+        (
+            [line] => 69
+            [file] => models/Ordenador.php
+            [message] => No docblock for element 'verDispositivos'
+        )
+
+    [42] => Array
+        (
+            [line] => 95
+            [file] => models/Ordenador.php
+            [message] => No docblock for element 'verHistorial'
+        )
+
+    [43] => Array
+        (
+            [line] => 123
+            [file] => models/Ordenador.php
+            [message] => No docblock for element 'getNombre'
+        )
+
+    [44] => Array
+        (
+            [line] => 168
+            [file] => models/Ordenador.php
+            [message] => No docblock for element 'afterSave'
+        )
+
+    [45] => Array
+        (
+            [line] => 15
+            [file] => models/OrdenadorSearch.php
+            [message] => No docblock for element '$numero'
+        )
+
+    [46] => Array
+        (
+            [line] => 15
+            [file] => models/OrdenadorSearch.php
+            [message] => No short description for element '$numero'
+        )
+
+    [47] => Array
+        (
+            [line] => 25
+            [file] => models/Usuario.php
+            [message] => No docblock for element '$passwordForm'
+        )
+
+    [48] => Array
+        (
+            [line] => 25
+            [file] => models/Usuario.php
+            [message] => No short description for element '$passwordForm'
+        )
+
+    [49] => Array
+        (
+            [line] => 26
+            [file] => models/Usuario.php
+            [message] => No docblock for element '$passwordConfirmForm'
+        )
+
+    [50] => Array
+        (
+            [line] => 26
+            [file] => models/Usuario.php
+            [message] => No short description for element '$passwordConfirmForm'
+        )
+
+    [51] => Array
+        (
+            [line] => 28
+            [file] => models/Usuario.php
+            [message] => No docblock for element '$foto'
+        )
+
+    [52] => Array
+        (
+            [line] => 28
+            [file] => models/Usuario.php
+            [message] => No short description for element '$foto'
+        )
+
+    [53] => Array
+        (
+            [line] => 102
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'getIsAdmin'
+        )
+
+    [54] => Array
+        (
+            [line] => 107
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'getTipoUsuario'
+        )
+
+    [55] => Array
+        (
+            [line] => 112
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'findIdentity'
+        )
+
+    [56] => Array
+        (
+            [line] => 117
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'findIdentityByAccessToken'
+        )
+
+    [57] => Array
+        (
+            [line] => 132
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'getId'
+        )
+
+    [58] => Array
+        (
+            [line] => 137
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'getAuthKey'
+        )
+
+    [59] => Array
+        (
+            [line] => 141
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'validateAuthKey'
+        )
+
+    [60] => Array
+        (
+            [line] => 156
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'beforeSave'
+        )
+
+    [61] => Array
+        (
+            [line] => 178
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'uploadFile'
+        )
+
+    [62] => Array
+        (
+            [line] => 188
+            [file] => models/Usuario.php
+            [message] => No docblock for element 'getRutaImagen'
+        )
+
+)

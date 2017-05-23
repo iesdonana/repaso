@@ -1,0 +1,290 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 20
+            [file] => controllers/AulasController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\AulasController.
+        )
+
+    [1] => Array
+        (
+            [line] => 24
+            [file] => controllers/DispositivosController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\DispositivosController.
+        )
+
+    [2] => Array
+        (
+            [line] => 26
+            [file] => controllers/OrdenadoresController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\OrdenadoresController.
+        )
+
+    [3] => Array
+        (
+            [line] => 17
+            [file] => controllers/SiteController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [4] => Array
+        (
+            [line] => 43
+            [file] => controllers/SiteController.php
+            [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [5] => Array
+        (
+            [line] => 25
+            [file] => controllers/UsuariosController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\UsuariosController.
+        )
+
+    [6] => Array
+        (
+            [line] => 25
+            [file] => models/Aula.php
+            [message] => Method tableName has no parent to inherit from in app\models\Aula.
+        )
+
+    [7] => Array
+        (
+            [line] => 33
+            [file] => models/Aula.php
+            [message] => Method rules has no parent to inherit from in app\models\Aula.
+        )
+
+    [8] => Array
+        (
+            [line] => 44
+            [file] => models/Aula.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Aula.
+        )
+
+    [9] => Array
+        (
+            [line] => 25
+            [file] => models/Aula.php
+            [message] => Method tableName has no parent to inherit from in app\models\Aula.
+        )
+
+    [10] => Array
+        (
+            [line] => 33
+            [file] => models/Aula.php
+            [message] => Method rules has no parent to inherit from in app\models\Aula.
+        )
+
+    [11] => Array
+        (
+            [line] => 44
+            [file] => models/Aula.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Aula.
+        )
+
+    [12] => Array
+        (
+            [line] => 29
+            [file] => models/AulaSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\AulaSearch.
+        )
+
+    [13] => Array
+        (
+            [line] => 23
+            [file] => models/Dispositivo.php
+            [message] => Method tableName has no parent to inherit from in app\models\Dispositivo.
+        )
+
+    [14] => Array
+        (
+            [line] => 31
+            [file] => models/Dispositivo.php
+            [message] => Method rules has no parent to inherit from in app\models\Dispositivo.
+        )
+
+    [15] => Array
+        (
+            [line] => 67
+            [file] => models/Dispositivo.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Dispositivo.
+        )
+
+    [16] => Array
+        (
+            [line] => 23
+            [file] => models/Dispositivo.php
+            [message] => Method tableName has no parent to inherit from in app\models\Dispositivo.
+        )
+
+    [17] => Array
+        (
+            [line] => 31
+            [file] => models/Dispositivo.php
+            [message] => Method rules has no parent to inherit from in app\models\Dispositivo.
+        )
+
+    [18] => Array
+        (
+            [line] => 67
+            [file] => models/Dispositivo.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Dispositivo.
+        )
+
+    [19] => Array
+        (
+            [line] => 77
+            [file] => models/DispositivoForm.php
+            [message] => Method scenarios has no parent to inherit from in app\models\DispositivoForm.
+        )
+
+    [20] => Array
+        (
+            [line] => 31
+            [file] => models/DispositivoSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\DispositivoSearch.
+        )
+
+    [21] => Array
+        (
+            [line] => 28
+            [file] => models/Ordenador.php
+            [message] => Method tableName has no parent to inherit from in app\models\Ordenador.
+        )
+
+    [22] => Array
+        (
+            [line] => 36
+            [file] => models/Ordenador.php
+            [message] => Method rules has no parent to inherit from in app\models\Ordenador.
+        )
+
+    [23] => Array
+        (
+            [line] => 49
+            [file] => models/Ordenador.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Ordenador.
+        )
+
+    [24] => Array
+        (
+            [line] => 28
+            [file] => models/Ordenador.php
+            [message] => Method tableName has no parent to inherit from in app\models\Ordenador.
+        )
+
+    [25] => Array
+        (
+            [line] => 36
+            [file] => models/Ordenador.php
+            [message] => Method rules has no parent to inherit from in app\models\Ordenador.
+        )
+
+    [26] => Array
+        (
+            [line] => 49
+            [file] => models/Ordenador.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Ordenador.
+        )
+
+    [27] => Array
+        (
+            [line] => 31
+            [file] => models/OrdenadorSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\OrdenadorSearch.
+        )
+
+    [28] => Array
+        (
+            [line] => 27
+            [file] => models/RegistroDisp.php
+            [message] => Method tableName has no parent to inherit from in app\models\RegistroDisp.
+        )
+
+    [29] => Array
+        (
+            [line] => 35
+            [file] => models/RegistroDisp.php
+            [message] => Method rules has no parent to inherit from in app\models\RegistroDisp.
+        )
+
+    [30] => Array
+        (
+            [line] => 52
+            [file] => models/RegistroDisp.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\RegistroDisp.
+        )
+
+    [31] => Array
+        (
+            [line] => 23
+            [file] => models/RegistroOrd.php
+            [message] => Method tableName has no parent to inherit from in app\models\RegistroOrd.
+        )
+
+    [32] => Array
+        (
+            [line] => 31
+            [file] => models/RegistroOrd.php
+            [message] => Method rules has no parent to inherit from in app\models\RegistroOrd.
+        )
+
+    [33] => Array
+        (
+            [line] => 47
+            [file] => models/RegistroOrd.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\RegistroOrd.
+        )
+
+    [34] => Array
+        (
+            [line] => 33
+            [file] => models/Usuario.php
+            [message] => Method tableName has no parent to inherit from in app\models\Usuario.
+        )
+
+    [35] => Array
+        (
+            [line] => 41
+            [file] => models/Usuario.php
+            [message] => Method rules has no parent to inherit from in app\models\Usuario.
+        )
+
+    [36] => Array
+        (
+            [line] => 90
+            [file] => models/Usuario.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Usuario.
+        )
+
+    [37] => Array
+        (
+            [line] => 33
+            [file] => models/Usuario.php
+            [message] => Method tableName has no parent to inherit from in app\models\Usuario.
+        )
+
+    [38] => Array
+        (
+            [line] => 41
+            [file] => models/Usuario.php
+            [message] => Method rules has no parent to inherit from in app\models\Usuario.
+        )
+
+    [39] => Array
+        (
+            [line] => 90
+            [file] => models/Usuario.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Usuario.
+        )
+
+    [40] => Array
+        (
+            [line] => 29
+            [file] => models/UsuarioSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\UsuarioSearch.
+        )
+
+)
