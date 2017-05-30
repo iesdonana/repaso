@@ -40,14 +40,26 @@ $config = [
                 'encryption' => 'tls',
             ],
         ],
-        'log' => [
+        'log' => YII_ENV === 'prod' ? [
+            'flushInterval' => 1,
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\SyslogTarget',
+                    'class' => 'jones\herokulogger\HerokuTarget',
+                    'levels' => ['error', 'warning', 'info'],
+                    'exportInterval' => 1,
+                    'logVars' => []
+                ]
+            ]
+        ] : [
+            'flushInterval' => 1,
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
-                ],
-            ],
+                ]
+            ]
         ],
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [

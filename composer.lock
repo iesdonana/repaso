@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8ee61c0392094f656e39e2a37405d871",
-    "content-hash": "ed89db6a9804ba66dfff3d41716fce59",
+    "hash": "546633cdcdb6f5946e817bb968219414",
+    "content-hash": "121123dcc116bb67de176cd80dc59d46",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -424,6 +424,46 @@
                 "image processing"
             ],
             "time": "2015-09-19 16:54:05"
+        },
+        {
+            "name": "joni-jones/yii2-heroku-logger",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joni-jones/yii2-heroku-logger.git",
+                "reference": "0a648cdd52941caae49c0e54ae65b8a7fc6b2db9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joni-jones/yii2-heroku-logger/zipball/0a648cdd52941caae49c0e54ae65b8a7fc6b2db9",
+                "reference": "0a648cdd52941caae49c0e54ae65b8a7fc6b2db9",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "jones\\herokulogger\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ievgen Sentiabov",
+                    "email": "ievgen.sentiabov@gmail.com"
+                }
+            ],
+            "description": "Simple logger implementation to works on heroku services",
+            "keywords": [
+                "extension",
+                "heroku",
+                "logger",
+                "logging",
+                "yii2"
+            ],
+            "time": "2015-12-03 20:26:45"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3739,7 +3779,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "joni-jones/yii2-heroku-logger": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
