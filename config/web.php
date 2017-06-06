@@ -8,9 +8,6 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'es-ES',
     'components' => [
-        'formatter' => [
-            'defaultTimeZone' => 'Europe/Madrid',
-        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Iw4uM5e51DyVe0jgYMh-m6WjmoYz7-YI',
@@ -40,27 +37,7 @@ $config = [
                 'encryption' => 'tls',
             ],
         ],
-        'log' => YII_ENV === 'prod' ? [
-            'flushInterval' => 1,
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'jones\herokulogger\HerokuTarget',
-                    'levels' => ['error', 'warning', 'info'],
-                    'exportInterval' => 1,
-                    'logVars' => []
-                ]
-            ]
-        ] : [
-            'flushInterval' => 1,
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ]
-            ]
-        ],
+        'log' => require(__DIR__ . '/log.php'),
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -75,6 +52,10 @@ $config = [
         ],
     ],
     'params' => $params,
+    //'timeZone' => 'Europe/Madrid',
+    'on beforeRequest' => function ($event) {
+        Yii::$app->setTimeZone(Yii::$app->user->isGuest ? 'Europe/Madrid' : Yii::$app->user->identity->zona_horaria);
+    },
 ];
 
 if (YII_ENV_DEV) {
